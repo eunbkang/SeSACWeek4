@@ -16,6 +16,11 @@ class TranslationViewController: UIViewController {
     
     @IBOutlet var requestButton: UIButton!
     
+    let headers: HTTPHeaders = [
+        "X-Naver-Client-Id": APIKey.naver,
+        "X-Naver-Client-Secret": APIKey.naverSecret
+    ]
+    
     var detectedLanguage: String?
     
     override func viewDidLoad() {
@@ -27,15 +32,11 @@ class TranslationViewController: UIViewController {
     }
     
     @IBAction func tappedRequestButton(_ sender: UIButton) {
-        callDetectLangRequest()
+        makeDetectLangRequest()
     }
     
-    func callDetectLangRequest() {
+    func makeDetectLangRequest() {
         let url = "https://openapi.naver.com/v1/papago/detectLangs"
-        let headers: HTTPHeaders = [
-            "X-Naver-Client-Id": APIKey.naver,
-            "X-Naver-Client-Secret": APIKey.naverSecret
-        ]
         let parameters: Parameters = [
             "query": originTextView.text ?? ""
         ]
@@ -48,7 +49,7 @@ class TranslationViewController: UIViewController {
                 
                 self.detectedLanguage = json["langCode"].stringValue
                 
-                self.callTranslateRequest()
+                self.makeTranslateRequest()
                 
             case .failure(let error):
                 print(error)
@@ -56,12 +57,8 @@ class TranslationViewController: UIViewController {
         }
     }
     
-    func callTranslateRequest() {
+    func makeTranslateRequest() {
         let url = "https://openapi.naver.com/v1/papago/n2mt"
-        let headers: HTTPHeaders = [
-            "X-Naver-Client-Id": APIKey.naver,
-            "X-Naver-Client-Secret": APIKey.naverSecret
-        ]
         
         guard let source = detectedLanguage else {
             print("no langCode")
