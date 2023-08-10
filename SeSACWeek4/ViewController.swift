@@ -17,21 +17,29 @@ struct Movie {
 class ViewController: UIViewController {
 
     @IBOutlet var movieTableView: UITableView!
+    @IBOutlet var loadingIndicatorView: UIActivityIndicatorView!
+    @IBOutlet var searchBar: UISearchBar!
     
     var movieList: [Movie] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        callRequest()
-        
         movieTableView.delegate = self
         movieTableView.dataSource = self
         movieTableView.rowHeight = 60
+        
+        searchBar.delegate = self
+        
+        loadingIndicatorView.isHidden = true
     }
 
-    func callRequest() {
-        let url = "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=\(APIKey.boxOfficeKey)&targetDt=20130101"
+    func callRequest(date: String) {
+        
+        loadingIndicatorView.startAnimating()
+        loadingIndicatorView.isHidden = false
+        
+        let url = "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=\(APIKey.boxOfficeKey)&targetDt=\(date)"
         
         AF.request(url, method: .get).validate().responseJSON { response in
             switch response.result {
@@ -54,6 +62,8 @@ class ViewController: UIViewController {
                     self.movieList.append(movie)
                 }
                 
+                self.loadingIndicatorView.stopAnimating()
+                self.loadingIndicatorView.isHidden = true
                 self.movieTableView.reloadData()
                 
             case .failure(let error):
@@ -82,3 +92,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+//MARK: - UISearchBarDelegate
+
+extension ViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        // 20220101 > 1. 8글자 2. 20233333 올바른 날짜 3. 날짜 범주
+        guard let query = searchBar.text else { return }
+        
+        callRequest(date: query)
+    }
+}
