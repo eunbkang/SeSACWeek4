@@ -16,6 +16,9 @@ class TranslationViewController: UIViewController {
     
     @IBOutlet var requestButton: UIButton!
     
+    // 접근 제어자때문에 인스턴스 생성 불가
+//    let helper = UserDefaultsHelper()
+    
     let headers: HTTPHeaders = [
         "X-Naver-Client-Id": APIKey.naver,
         "X-Naver-Client-Secret": APIKey.naverSecret
@@ -25,14 +28,25 @@ class TranslationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        UserDefaults.standard.set("고래밥", forKey: "nickname")
+        UserDefaults.standard.set(33, forKey: "age")
+        UserDefaultsHelper.standard.nickname = "칙촉"
+        
+        UserDefaults.standard.string(forKey: "nickname")
+        UserDefaults.standard.integer(forKey: "age")
+        originTextView.text = UserDefaultsHelper.standard.nickname
+        
         originTextView.text = ""
         translatedTextView.text = ""
         translatedTextView.isEditable = false
     }
     
     @IBAction func tappedRequestButton(_ sender: UIButton) {
-        makeDetectLangRequest()
+//        makeDetectLangRequest()
+        TranslateAPIManager.shared.callRequest(text: originTextView.text) { resultText in
+            self.translatedTextView.text = resultText
+        }
     }
     
     func makeDetectLangRequest() {

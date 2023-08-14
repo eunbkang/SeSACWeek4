@@ -8,7 +8,7 @@
 import UIKit
 
 class VideoTableViewCell: UITableViewCell {
-    static let identifier = "VideoTableViewCell"
+//    static let identifier = "VideoTableViewCell" // UITableViewCell에 ReusableViewProtocol 채택하여 불필요
     
     @IBOutlet var thumbnailImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
