@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E6527FF2A8A0236004F466B /* BoxOfficeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6527FE2A8A0236004F466B /* BoxOfficeData.swift */; };
+		7E6528182A8D15AA004F466B /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6528172A8D15AA004F466B /* Video.swift */; };
 		7E7385BC2A80965E0010CA32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7385BB2A80965E0010CA32 /* AppDelegate.swift */; };
 		7E7385BE2A80965E0010CA32 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7385BD2A80965E0010CA32 /* SceneDelegate.swift */; };
 		7E7385C02A80965E0010CA32 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7385BF2A80965E0010CA32 /* ViewController.swift */; };
@@ -32,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E6527FE2A8A0236004F466B /* BoxOfficeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeData.swift; sourceTree = "<group>"; };
+		7E6528172A8D15AA004F466B /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		7E7385B82A80965E0010CA32 /* SeSACWeek4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACWeek4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E7385BB2A80965E0010CA32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E7385BD2A80965E0010CA32 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +108,7 @@
 				7E7385DA2A809C320010CA32 /* TranslationViewController.swift */,
 				7E7385DC2A809C560010CA32 /* APIKey.swift */,
 				7EA0A8362A81C4D800CD10ED /* WeatherViewController.swift */,
+				7E6527FE2A8A0236004F466B /* BoxOfficeData.swift */,
 			);
 			path = SeSACWeek4;
 			sourceTree = "<group>";
@@ -113,6 +118,7 @@
 			children = (
 				7EA0A8382A81E78200CD10ED /* VideoViewController.swift */,
 				7EA0A8762A8322F600CD10ED /* VideoTableViewCell.swift */,
+				7E6528172A8D15AA004F466B /* Video.swift */,
 			);
 			path = Video;
 			sourceTree = "<group>";
@@ -245,8 +251,10 @@
 				7EA0A89E2A85E38200CD10ED /* TranslateAPIManaver.swift in Sources */,
 				7EA0A8A12A85F9F200CD10ED /* AsyncViewController.swift in Sources */,
 				7E7385BC2A80965E0010CA32 /* AppDelegate.swift in Sources */,
+				7E6528182A8D15AA004F466B /* Video.swift in Sources */,
 				7EA0A8772A8322F600CD10ED /* VideoTableViewCell.swift in Sources */,
 				7E7385BE2A80965E0010CA32 /* SceneDelegate.swift in Sources */,
+				7E6527FF2A8A0236004F466B /* BoxOfficeData.swift in Sources */,
 				7EA0A8982A85C51400CD10ED /* Endpoint.swift in Sources */,
 				7E7385DD2A809C560010CA32 /* APIKey.swift in Sources */,
 			);

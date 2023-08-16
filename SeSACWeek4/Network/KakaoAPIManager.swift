@@ -7,7 +7,6 @@
 
 import Foundation
 import Alamofire
-import SwiftyJSON
 
 class KakaoAPIManager {
     
@@ -16,20 +15,17 @@ class KakaoAPIManager {
     
     let header: HTTPHeaders = ["Authorization": "KakaoAK \(APIKey.kakaoRest)"]
     
-    func callRequest(type: Endpoint, query: String, completionHandler: @escaping (JSON) -> ()) {
-        
+    func callRequest(type: Endpoint, query: String, completionHandler: @escaping (KakaoVideoResult) -> ()) {
         guard let searchText = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         let url = type.requestUrl + searchText
         
-        AF.request(url, method: .get, headers: header).validate(statusCode: 200...500).responseJSON { response in
+        AF.request(url, method: .get, headers: header).validate().responseDecodable(of: KakaoVideoResult.self) { response in
             switch response.result {
             case .success(let value):
-                let json = JSON(value)
-
-                completionHandler(json)
+                completionHandler(value)
                 
             case .failure(let error):
-                print(error)
+                print("API 에러:", error)
             }
         }
     }

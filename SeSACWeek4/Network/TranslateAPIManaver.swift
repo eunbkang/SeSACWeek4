@@ -26,7 +26,7 @@ class TranslateAPIManager {
         let parameters: Parameters = [
             "source": "ko",
             "target": "en",
-            "text": text ?? ""
+            "text": text
         ]
         
         AF.request(url, method: .post, parameters: parameters, headers: headers).validate().responseJSON { response in
